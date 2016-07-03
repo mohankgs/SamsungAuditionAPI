@@ -1,0 +1,18 @@
+{
+  "name": "samsungshoppingcartapi",
+  "version": "1.0.0",
+  "description": "REST API to manage shopping cart ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mohan Sankar",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.1.0",
+    "r": "0.0.5"
+  }
+}
