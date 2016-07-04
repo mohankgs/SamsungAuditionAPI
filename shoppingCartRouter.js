@@ -81,20 +81,21 @@ var routes = function(){
 
   var itemRouter = express.Router()
 
+  // Deal with invididual items in the cart
   itemRouter.route('/items/:itemId')
     .get(function(req, res){
       var returnItem = shoppingCart.findItemById(req.params.itemId)
       if(returnItem)
         res.status(200).json(returnItem)
       else
-        res.status(400).send("Item cannot be found.")
+        res.status(404).send("Item cannot be found.")
     })
     .put(function(req, res){
         var updated = shoppingCart.updateShoppingCartItem(req.params.itemId, req.body.quantity)
         if(!updated){
           res.status(404).send('Item not found')
         }else{
-          res.status(201).send(shoppingCart.items)
+          res.status(200).send(shoppingCart.items)
         }
     })
     .delete(function(req, res){
@@ -102,23 +103,25 @@ var routes = function(){
       if(deleted){
         res.status(200).json(shoppingCart.items)
       }else{
-        res.status(400).send('Item not found')
+        res.status(404).send('Item not found')
       }
     })
 
+  // Deals with entire shoppingCart
+  // POST - add one or many items to the cart
+  // GET - returns the entire cart
+  // DELETE - delete all the items in the cart
   itemRouter.route('/items')
     .post(function(req, res){
       var items = req.body.items
       if(items){
-        console.log(items)
         shoppingCart.addShoppingCartItems(items)
         res.status(201).send(shoppingCart.items)
       }else{
-        res.status(500).send('No items found.')
+        res.status(404).send('No items found.')
       }
     })
     .get(function(req, res){
-        console.log(shoppingCart.items)
         if(shoppingCart.items.length < 1)
           res.status(200).send('Shopping Cart is empty')
         else
