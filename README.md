@@ -30,7 +30,7 @@ To list items in the shopping cart do GET - http://localhost:3000/v1/api/items. 
 
 To list an item do GET on http://localhost:3000/v1/api/items/{id}. From the previous query you can get a id.
 
-To add items to the cart do POST to http://localhost:3000/v1/api/items. Pass the following items in the body 
+To add items to the cart do POST to http://localhost:3000/v1/api/items. Pass the following items in the body and set the header  "Content-Type" to "application/json". Output should be combined list of old and new items in the cart, so in this case you should see four items.
 ```
 {
 "items" : [
@@ -47,16 +47,16 @@ To add items to the cart do POST to http://localhost:3000/v1/api/items. Pass the
 ]
 }
 ```
-To delete an item from the cart use DELETE on http://localhost:3000/v1/api/items/{id}. Get the id from the list.
+To delete an item from the cart use DELETE on http://localhost:3000/v1/api/items/{id}. Output should be remaining cart items without this item.
 
-To update quantity for an item in the cart use PUT on http://localhost:3000/v1/api/items/{id} and pass the following in the body
+To update quantity for an item in the cart use PUT on http://localhost:3000/v1/api/items/{id} and pass the following in the body. Output should be cart items with updated quantity.
 
 ```
 {
   "quantity":"3"
 }
 ```
-To delete an entire cart use DELETE on http://localhost:3000/v1/api/items/
+To delete an entire cart use DELETE on http://localhost:3000/v1/api/items/ . Output should be the following message - "Shopping cart is empty.
 
 
 
